@@ -1,0 +1,28 @@
+﻿@model PizzeriaEdiMVC.Entidades.ViewModels.TipoProducto.TipoProductoDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Tipo de Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoProductoListViewModel.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoProductoListViewModel.Descripcion)
+        </dd>
+
+    </dl>
+    @Html.Partial("_ListaProductos",Model.ProductosVm)
+    @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" })
+
+
+</div>
+
+

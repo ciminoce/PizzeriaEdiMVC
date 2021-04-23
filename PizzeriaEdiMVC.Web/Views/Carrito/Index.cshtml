@@ -1,0 +1,50 @@
+﻿@model PizzeriaEdiMVC.Entidades.ViewModels.Carrito.CarritoListViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tu pedido</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cantidad</th>
+            <th>Producto </th>
+            <th class="text-right">Precio</th>
+            <th class="text-right">SubTotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Cantidad</td>
+                <td>@item.ProductoListViewModel.Descripcion</td>
+                <td class="text-right">@item.ProductoListViewModel.Precio</td>
+                <td class="text-right">@(item.ProductoListViewModel.Precio*item.Cantidad)</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Carrito"))
+                    {
+                        @Html.Hidden("productoId", item.ProductoListViewModel.ProductoId)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input type="submit" class="btn btn-sm btn-danger" value="Eliminar" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"> <strong>Total:</strong></td>
+            <td class="text-right"><strong>@Model.Items.Sum(i => i.Cantidad * i.ProductoListViewModel.Precio)</strong> </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center">
+    <a href="@Model.ReturnUrl" class="btn btn-success">Continuar comprando</a>
+    @Html.ActionLink("CheckOut", "CheckOut", null,
+
+        new { @class = "btn btn-primary" })
+
+</div>
+

@@ -1,0 +1,50 @@
+﻿@model PizzeriaEdiMVC.Entidades.ViewModels.Producto.ProductoEditViewModel
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoProductoId)
+            @Html.DropDownListFor(model => model.TipoProductoId, new SelectList(Model.TipoProductos, "TipoProductoId", "Descripcion"), "Seleccione Tipo", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TipoProductoId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion)
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Precio)
+            @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Detalles)
+            @Html.TextAreaFor(model => model.Detalles, new { @class = "form-control", rows = 5, cols = 10 })
+            @Html.ValidationMessageFor(model => model.Detalles, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Activo)
+            @Html.CheckBoxFor(model => model.Activo)
+            @Html.ValidationMessageFor(model => model.Activo, "", new { @class = "text-danger" })
+        </div>
+        <h2>Foto del Producto</h2>
+
+        <div class="well">
+            <img id="imgSalida" src="@Url.Content($"~/Content/Imagenes/Productos/{Model.Imagen}")" alt="Imagen" style="width: 50%">
+            <div class="caption">
+                <p>@Model.Descripcion</p>
+            </div>
+            <span class="btn btn-default btn-file" id="file-input">
+                @Html.TextBoxFor(modelo => modelo.ImagenFile, new { type = "file" })
+            </span>
+        </div>
+        <br>
+    </div>
+
+</div>
+

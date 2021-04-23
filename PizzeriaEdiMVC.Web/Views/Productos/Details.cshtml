@@ -1,0 +1,62 @@
+﻿@model PizzeriaEdiMVC.Entidades.ViewModels.Producto.ProductoDetailsViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<h2>Detalles del Producto</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="well">
+            <img id="imgSalida" src="@Url.Content($"~/Content/Imagenes/Productos/{Model.Imagen}")" alt="Imagen" style="width: 100%">
+            <div class="caption">
+                <p>@Model.Descripcion</p>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion, new { @class = "form-control" })
+
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Precio)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Precio, new { @class = "form-control" })
+
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Detalles)
+            </dt>
+            <dd>
+                @Html.TextAreaFor(model => model.Detalles, new { @class = "form-control", rows = 5, cols = 20, @readonly = "readonly" })
+
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Activo)
+            </dt>
+            <dd>
+                @Html.CheckBoxFor(model => model.Activo,new {@disabled="disabled"})
+
+            </dd>
+
+        </dl>
+        <div class="form-group">
+            @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" })
+            @Html.ActionLink("Editar", "Edit", new { id = Model.ProductoId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Agregar al Pedido", "", new { id = Model.ProductoId }, new { @class = "btn btn-default" })
+        </div>
+
+    </div>
+</div>
+
