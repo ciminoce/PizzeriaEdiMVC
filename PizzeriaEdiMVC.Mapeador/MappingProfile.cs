@@ -33,6 +33,8 @@ namespace PizzeriaEdiMVC.Mapeador
             CreateMap<ItemVenta, ItemVentaEditDto>()
                 .ForMember(dest => dest.Producto, act => act.MapFrom(src => src.Producto.Descripcion)).ReverseMap();
             CreateMap<ItemVentaListDto, ItemVentaListViewModel>();
+            CreateMap<ItemVentaEditDto, ItemVentaListDto>().ForMember(dest => dest.Producto,
+                act => act.MapFrom(src => src.Producto.Descripcion));
         }
 
         private void LoadVentasMapping()
@@ -52,6 +54,7 @@ namespace PizzeriaEdiMVC.Mapeador
             CreateMap<VentaListDto, VentaDetailsViewModel>()
                 .ForMember(dest => dest.Detalles, act => act.MapFrom(src => src.ItemsVentas));
             CreateMap<VentaListDto, VentaListViewModel>();
+            CreateMap<VentaEditDto, VentaListDto>();
         }
 
         private void LoadCarritoMapping()

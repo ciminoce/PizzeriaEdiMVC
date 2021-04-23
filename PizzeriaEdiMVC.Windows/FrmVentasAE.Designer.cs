@@ -29,9 +29,10 @@ namespace PizzeriaEdiMVC.Windows
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.ProductosComboBox = new System.Windows.Forms.ComboBox();
@@ -44,19 +45,19 @@ namespace PizzeriaEdiMVC.Windows
             this.AceptarProductoButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.PrecioTotalTextBox = new System.Windows.Forms.TextBox();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.OKButton = new System.Windows.Forms.Button();
             this.TotalPedidoTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.PedidoDataGridView = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.cmnProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBorrar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cmnEditar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,6 +65,7 @@ namespace PizzeriaEdiMVC.Windows
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PedidoDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -148,25 +150,18 @@ namespace PizzeriaEdiMVC.Windows
             // 
             // CantidadNumericUpDown
             // 
+            this.CantidadNumericUpDown.Enabled = false;
             this.CantidadNumericUpDown.Location = new System.Drawing.Point(453, 21);
-            this.CantidadNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.CantidadNumericUpDown.Name = "CantidadNumericUpDown";
             this.CantidadNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.CantidadNumericUpDown.TabIndex = 29;
-            this.CantidadNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.CantidadNumericUpDown.ValueChanged += new System.EventHandler(this.CantidadNumericUpDown_ValueChanged);
             // 
             // PrecioUnitTextBox
             // 
             this.PrecioUnitTextBox.Location = new System.Drawing.Point(72, 77);
             this.PrecioUnitTextBox.Name = "PrecioUnitTextBox";
+            this.PrecioUnitTextBox.ReadOnly = true;
             this.PrecioUnitTextBox.Size = new System.Drawing.Size(94, 20);
             this.PrecioUnitTextBox.TabIndex = 2;
             // 
@@ -208,6 +203,15 @@ namespace PizzeriaEdiMVC.Windows
             this.label11.TabIndex = 28;
             this.label11.Text = "Precio Total:";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(62, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Precio Unit:";
+            // 
             // PrecioTotalTextBox
             // 
             this.PrecioTotalTextBox.Location = new System.Drawing.Point(456, 50);
@@ -238,6 +242,7 @@ namespace PizzeriaEdiMVC.Windows
             this.OKButton.Text = "OK";
             this.OKButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // TotalPedidoTextBox
             // 
@@ -267,8 +272,7 @@ namespace PizzeriaEdiMVC.Windows
             this.cmnPrecioUnitario,
             this.cmnCantidad,
             this.cmnTotal,
-            this.btnBorrar,
-            this.cmnEditar});
+            this.btnBorrar});
             this.PedidoDataGridView.Location = new System.Drawing.Point(25, 19);
             this.PedidoDataGridView.MultiSelect = false;
             this.PedidoDataGridView.Name = "PedidoDataGridView";
@@ -277,6 +281,11 @@ namespace PizzeriaEdiMVC.Windows
             this.PedidoDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PedidoDataGridView.Size = new System.Drawing.Size(825, 209);
             this.PedidoDataGridView.TabIndex = 68;
+            this.PedidoDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PedidoDataGridView_CellContentClick);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // cmnProducto
             // 
@@ -287,24 +296,24 @@ namespace PizzeriaEdiMVC.Windows
             // 
             // cmnPrecioUnitario
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.cmnPrecioUnitario.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.cmnPrecioUnitario.DefaultCellStyle = dataGridViewCellStyle4;
             this.cmnPrecioUnitario.HeaderText = "Precio Unitario";
             this.cmnPrecioUnitario.Name = "cmnPrecioUnitario";
             this.cmnPrecioUnitario.ReadOnly = true;
             // 
             // cmnCantidad
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.cmnCantidad.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.cmnCantidad.DefaultCellStyle = dataGridViewCellStyle5;
             this.cmnCantidad.HeaderText = "Cantidad";
             this.cmnCantidad.Name = "cmnCantidad";
             this.cmnCantidad.ReadOnly = true;
             // 
             // cmnTotal
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.cmnTotal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.cmnTotal.DefaultCellStyle = dataGridViewCellStyle6;
             this.cmnTotal.HeaderText = "Total";
             this.cmnTotal.Name = "cmnTotal";
             this.cmnTotal.ReadOnly = true;
@@ -318,24 +327,6 @@ namespace PizzeriaEdiMVC.Windows
             this.btnBorrar.ReadOnly = true;
             this.btnBorrar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnBorrar.Width = 41;
-            // 
-            // cmnEditar
-            // 
-            this.cmnEditar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cmnEditar.HeaderText = "Editar";
-            this.cmnEditar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.cmnEditar.Name = "cmnEditar";
-            this.cmnEditar.ReadOnly = true;
-            this.cmnEditar.Width = 40;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 13);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Precio Unit:";
             // 
             // FrmVentasAE
             // 
@@ -358,6 +349,7 @@ namespace PizzeriaEdiMVC.Windows
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PedidoDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -382,12 +374,12 @@ namespace PizzeriaEdiMVC.Windows
         private System.Windows.Forms.TextBox TotalPedidoTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView PedidoDataGridView;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnPrecioUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnTotal;
         private System.Windows.Forms.DataGridViewImageColumn btnBorrar;
-        private System.Windows.Forms.DataGridViewImageColumn cmnEditar;
-        private System.Windows.Forms.Label label9;
     }
 }

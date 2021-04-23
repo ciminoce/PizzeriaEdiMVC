@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using AutoMapper;
 using PizzeriaEdiMVC.Entidades.DTOs.Venta;
 using PizzeriaEdiMVC.Servicios.Servicios.Facades;
 using PizzeriaEdiMVC.Windows.Ninject;
@@ -21,11 +22,11 @@ namespace PizzeriaEdiMVC.Windows
         }
 
         private readonly IServicioVentas _servicio;
-        
+        private IMapper _mapper;
         private List<VentaListDto> _lista;
         private void FrmVentas_Load(object sender, EventArgs e)
         {
-            
+            _mapper = PizzeriaEdiMVC.Mapeador.Mapeador.CrearMapper();
             try
             {
                 _lista = _servicio.GetLista();
@@ -101,7 +102,23 @@ namespace PizzeriaEdiMVC.Windows
             DialogResult dr=frm.ShowDialog(this);
             if (dr==DialogResult.OK)
             {
-                
+                try
+                {
+                    var ventaEditDto = frm.GetVenta();
+                    _servicio.Guardar(ventaEditDto);
+                    var ventaListDto = _mapper.Map<VentaListDto>(ventaEditDto);
+                    var r = ConstruirFila();
+                    SetearFila(r,ventaListDto);
+                    AgregarFila(r);
+                    MessageBox.Show("Venta agregada", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                }
             }
         }
     }
