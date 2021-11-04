@@ -39,18 +39,18 @@
             <td>
                 @using (Html.BeginForm("AddToCart", "Carrito"))
                 {
-                <div class="btn-group">
-                    @Html.ActionLink("Edit", "Edit", "Productos", new { id = item.ProductoId }, new { @class = "btn btn-warning" })
-                    @*@Html.ActionLink("Details", "Details","Productos", new { id = item.ProductoId }, new { @class = "btn btn-info" })*@
-                    @Html.ActionLink("Borrar", "Delete", "Productos", new { id = item.ProductoId }, new { @class = "btn btn-danger"})
+                    <div class="btn-group">
+                        @Html.ActionLink("Edit", "Edit", "Productos", new { id = item.ProductoId }, new { @class = "btn btn-warning" })
+                        @*@Html.ActionLink("Details", "Details","Productos", new { id = item.ProductoId }, new { @class = "btn btn-info" })*@
+                        @Html.ActionLink("Borrar", "Delete", "Productos", new { id = item.ProductoId }, new { @class = "btn btn-danger"})
 
-                    <div style="float: right">
-                        @Html.HiddenFor(modelitem => item.ProductoId)
-                        @Html.Hidden("productoId", item.ProductoId)
-                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                        <input type="submit" class="btn btn-default" value="Agregar" />
+                        <div style="float: right">
+                            @Html.HiddenFor(modelitem => item.ProductoId)
+                            @Html.Hidden("productoId", item.ProductoId)
+                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                            <input type="submit" class="btn btn-default" value="Agregar" />
+                        </div>
                     </div>
-                </div>
                 }
 
             </td>
